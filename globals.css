@@ -1,0 +1,26 @@
+:root {
+    --primary: #F16522;
+    --text-dark: #333333;
+    --text-gray: #777777;
+    --bg-start: #FEF7F4;
+    --bg-end: #F4E8E1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    /* Warm gradient from screenshot */
+    background: linear-gradient(135deg, var(--bg-start) 0%, #FFFFFF 50%, var(--bg-end) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-dark);
+}
