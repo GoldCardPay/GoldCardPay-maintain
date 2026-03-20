@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldCard - 系统维护中</title>
+    <style>
+        :root {
+            --primary: #F16522;
+            /* adjusted orange based on screenshot */
+            --text-dark: #333333;
+            --text-gray: #777777;
+            --bg-start: #FEF7F4;
+            --bg-end: #F4E8E1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            /* Warm gradient from screenshot */
+            background: linear-gradient(135deg, var(--bg-start) 0%, #FFFFFF 50%, var(--bg-end) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-dark);
+        }
+
+        .container {
+            width: 1100px;
+            max-width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        /* Left Panel */
+        .left-panel {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 1rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-shadow: 0 10px 25px -5px rgba(249, 115, 22, .3);
+            box-shadow: 0 10px 25px -5px rgba(249, 115, 22, .3);
+            color: #fff;
+        }
+
+        .logo-text {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: -webkit-gradient(linear, left top, right top, from(#1e293b), to(#475569));
+            background: linear-gradient(90deg, #1e293b, #475569);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: start;
+            /* adjusted to start to keep left alignment */
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            gap: .75rem;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.3;
+            color: #2D3748;
+            letter-spacing: 2px;
+        }
+
+        .title-highlight {
+            color: var(--primary);
+            display: block;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-top: 20px;
+            margin-bottom: 60px;
+        }
+
+        .features {
+            display: flex;
+            gap: 40px;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(241, 101, 34, 0.08);
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .feature-icon-wrapper svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1A202C;
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: #A0AEC0;
+        }
+
+        /* Right Panel */
+        .right-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -30px;
+        }
+
+        .login-card {
+            background: #FFFFFF;
+            width: 440px;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1A202C;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .maintenance-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .time-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .time-box svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .qr-code {
+            width: 140px;
+            height: 140px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .qr-hint {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-primary:hover {
+            background: #E05419;
+            transform: translateY(-1px);
+        }
+
+        /* Security Links */
+        .security-links {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-size: 11px;
+            color: #A0AEC0;
+        }
+
+        .security-links svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            margin-right: 4px;
+            vertical-align: -2px;
+        }
+
+        .dot {
+            color: #CBD5E0;
+        }
+
+        /* Float elements */
+        .chat-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 14px rgba(241, 101, 34, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .chat-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #A0AEC0;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .left-panel {
+                padding-right: 0;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features {
+                justify-content: center;
+            }
+
+            .right-wrapper {
+                margin-top: 0;
+            }
+
+            .chat-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left Banner -->
+        <div class="left-panel">
+            <div class="logo-container">
+                <div class="logo-icon"><img src="public/logo.svg" alt="logo" width="32" height="32"></div>
+                <span class="logo-text">GoldCard</span>
+            </div>
+            <div class="title">
+                支付无界<br>
+                <span class="title-highlight">全新G卡平台</span>
+            </div>
+
+            <div class="subtitle">
+                安全便捷的支付解决方案
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon-wrapper">
+                        <!-- Lock Icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                        </svg>
+                    </div>
+                    <div class="feature-title">安全加密</div>
+                    <div class="feature-desc">银行级安全保障</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon-wrapper">
+                        <!-- Card Icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
+                        </svg>
+                    </div>
+                    <div class="feature-title">方便快捷</div>
+                    <div class="feature-desc">卡片即开即用</div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon-wrapper">
+                        <!-- Arrow Icon -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                        </svg>
+                    </div>
+                    <div class="feature-title">全球通用</div>
+                    <div class="feature-desc">广告支付无忧</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Maintenance Card -->
+        <div class="right-wrapper">
+            <div class="login-card">
+                <div class="card-title">系统维护中</div>
+                <div class="card-subtitle">
+                    为了提供提供更好的服务，由于系统正在进行升级维护，给您带来的不便敬请谅解。
+                </div>
+
+                <div class="maintenance-info">
+                    <div class="time-box">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                        </svg>
+                        15:00 - 16:00
+                    </div>
+
+                    <img src="public/telegram.jpg" alt="Telegram客服" class="qr-code">
+                    <div class="qr-hint">紧急问题请扫码联系客服</div>
+                </div>
+            </div>
+
+            <div class="security-links">
+                <span><svg viewBox="0 0 24 24">
+                        <path
+                            d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                    </svg> 256位加密</span>
+                <span class="dot">•</span>
+                <span>PCI DSS 认证</span>
+                <span class="dot">•</span>
+                <span>WAF防火墙</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Copyright © 2024-2025 GoldCard Pay All Rights Reserved.
+    </div>
+
+</body>
+
+</html>
